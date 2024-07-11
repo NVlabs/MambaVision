@@ -20,7 +20,7 @@ clip_grad: 5.0
 clip_mode: norm
 color_jitter: 0.4
 cooldown_epochs: 10
-crop_pct: 0.875
+crop_pct: 1.0
 cutmix: 1.0
 cutmix_minmax: null
 data_dir: /datasets/imagenet_lmdb
@@ -69,15 +69,15 @@ lr_noise: null
 lr_noise_pct: 0.67
 lr_noise_std: 1.0
 mean: null
-mesa: 1.0
-mesa_start_ratio: 0.3
+mesa: 6.0
+mesa_start_ratio: 0.25
 min_lr: 5.0e-06
 mixup: 0.8
 mixup_mode: batch
 mixup_off_epoch: 0
 mixup_prob: 1.0
 mixup_switch_prob: 0.5
-model: faster_vit_3_224
+model: mamba_vision_L2
 model_ema: true
 model_ema_decay: 0.9998
 model_ema_force_cpu: false
@@ -89,7 +89,7 @@ no_prefetcher: false
 no_resume_opt: false
 no_saver: false
 num_classes: null
-opt: adamw
+opt: lamb
 opt_betas:
 - 0.9
 - 0.999
@@ -118,7 +118,7 @@ split_bn: false
 start_epoch: null
 std: null
 sync_bn: false
-tag: faster_vit_3_224
+tag: mambavision_large2_1k
 torchscript: false
 train_interpolation: random
 train_split: train
@@ -128,8 +128,8 @@ val_split: validation
 validate_only: false
 validation_batch_size: null
 vflip: 0.0
-warmup_epochs: 35
+warmup_epochs: 20
 warmup_lr: 1.0e-06
-weight_decay: 0.075
+weight_decay: 0.12
 worker_seeding: all
 workers: 8

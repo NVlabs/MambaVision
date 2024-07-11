@@ -22,6 +22,47 @@ from mamba_ssm.ops.selective_scan_interface import selective_scan_fn
 from einops import rearrange, repeat
 
 
+def _cfg(url='', **kwargs):
+    return {'url': url,
+            'num_classes': 1000,
+            'input_size': (3, 224, 224),
+            'pool_size': None,
+            'crop_pct': 0.875,
+            'interpolation': 'bicubic',
+            'fixed_input_size': True,
+            'mean': (0.485, 0.456, 0.406),
+            'std': (0.229, 0.224, 0.225),
+            **kwargs
+            }
+
+
+default_cfgs = {
+    'mamba_vision_T': _cfg(url='https://huggingface.co/ahatamiz/mambavision/resolve/main/mambavision_tiny_1k.pth.tar',
+                           crop_pct=1.0,
+                           input_size=(3, 224, 224),
+                           crop_mode='center'),
+    'mamba_vision_T2': _cfg(url='https://huggingface.co/ahatamiz/mambavision/resolve/main/mambavision_tiny2_1k.pth.tar',
+                            crop_pct=0.98,
+                            input_size=(3, 224, 224),
+                            crop_mode='center'),
+    'mamba_vision_S': _cfg(url='https://huggingface.co/ahatamiz/mambavision/resolve/main/mambavision_small_1k.pth.tar',
+                           crop_pct=0.93,
+                           input_size=(3, 224, 224),
+                           crop_mode='center'),
+    'mamba_vision_B': _cfg(url='https://huggingface.co/ahatamiz/mambavision/resolve/main/mambavision_base_1k.pth.tar',
+                           crop_pct=1.0,
+                           input_size=(3, 224, 224),
+                           crop_mode='center'),
+    'mamba_vision_L': _cfg(url='https://huggingface.co/ahatamiz/mambavision/resolve/main/mambavision_large_1k.pth.tar',
+                           crop_pct=1.0,
+                           input_size=(3, 224, 224),
+                           crop_mode='center'),
+    'mamba_vision_L2': _cfg(url='https://huggingface.co/ahatamiz/mambavision/resolve/main/mambavision_large2_1k.pth.tar',
+                            crop_pct=1.0,
+                            input_size=(3, 224, 224),
+                            crop_mode='center')                                
+}
+
 
 def window_partition(x, window_size):
     """
@@ -609,19 +650,16 @@ def mamba_vision_S(pretrained=False, **kwargs):
 @register_model
 def mamba_vision_B(pretrained=False, **kwargs):
     model = MambaVision(depths=[3, 3, 10, 5],
-                      num_heads=[2, 4, 8, 16],
-                      window_size=[8, 8, 14, 7],
-                      window_size_init=[8, 8, 14, 7],
-                      cascade=1,
-                      dim=128,
-                      in_dim=64,
-                      mlp_ratio=4,
-                      resolution=224,
-                      drop_path_rate=0.3,
-                      layer_scale=1e-5,
-                      layer_scale_conv=None,
-                      do_propagation=True,
-                      **kwargs)
+                        num_heads=[2, 4, 8, 16],
+                        window_size=[8, 8, 14, 7],
+                        dim=128,
+                        in_dim=64,
+                        mlp_ratio=4,
+                        resolution=224,
+                        drop_path_rate=0.3,
+                        layer_scale=1e-5,
+                        layer_scale_conv=None,
+                        **kwargs)
 
     if pretrained:
         model.load_state_dict(torch.load(pretrained))
@@ -631,20 +669,16 @@ def mamba_vision_B(pretrained=False, **kwargs):
 @register_model
 def mamba_vision_L(pretrained=False, **kwargs):
     model = MambaVision(depths=[3, 3, 10, 5],
-                      num_heads=[4, 8, 16, 32],
-                      window_size=[8, 8, 14, 7],
-                      window_size_init=[8, 8, 14, 7],
-                      cascade=1,
-                      dim=196,
-                      in_dim=64,
-                      mlp_ratio=4,
-                      resolution=224,
-                      drop_path_rate=0.3,
-                      layer_scale=1e-5,
-                      layer_scale_conv=None,
-                      layer_norm_last=False,
-                      do_propagation=True,
-                      **kwargs)
+                        num_heads=[4, 8, 16, 32],
+                        window_size=[8, 8, 14, 7],
+                        dim=196,
+                        in_dim=64,
+                        mlp_ratio=4,
+                        resolution=224,
+                        drop_path_rate=0.3,
+                        layer_scale=1e-5,
+                        layer_scale_conv=None,
+                        **kwargs)
 
     if pretrained:
         model.load_state_dict(torch.load(pretrained))
@@ -654,21 +688,17 @@ def mamba_vision_L(pretrained=False, **kwargs):
 @register_model
 def mamba_vision_L2(pretrained=False, **kwargs):
     model = MambaVision(depths=[3, 3, 12, 5],
-                      num_heads=[4, 8, 16, 32],
-                      window_size=[8, 8, 14, 7],
-                      window_size_init=[8, 8, 14, 7],
-                      cascade=1,
-                      dim=196,
-                      in_dim=64,
-                      mlp_ratio=4,
-                      resolution=224,
-                      drop_path_rate=0.3,
-                      layer_scale=1e-5,
-                      layer_scale_conv=None,
-                      layer_norm_last=False,
-                      do_propagation=True,
-                      **kwargs)
-
+                        num_heads=[4, 8, 16, 32],
+                        window_size=[8, 8, 14, 7],
+                        dim=196,
+                        in_dim=64,
+                        mlp_ratio=4,
+                        resolution=224,
+                        drop_path_rate=0.3,
+                        layer_scale=1e-5,
+                        layer_scale_conv=None,
+                        **kwargs)
+    
     if pretrained:
         model.load_state_dict(torch.load(pretrained))
     return model

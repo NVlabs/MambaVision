@@ -69,7 +69,7 @@ lr_noise: null
 lr_noise_pct: 0.67
 lr_noise_std: 1.0
 mean: null
-mesa: 0.5
+mesa: 1.0
 mesa_start_ratio: 0.25
 min_lr: 5.0e-06
 mixup: 0.8
@@ -77,7 +77,7 @@ mixup_mode: batch
 mixup_off_epoch: 0
 mixup_prob: 1.0
 mixup_switch_prob: 0.5
-model: faster_vit_1_224
+model: mamba_vision_S
 model_ema: true
 model_ema_decay: 0.9998
 model_ema_force_cpu: false
@@ -89,7 +89,7 @@ no_prefetcher: false
 no_resume_opt: false
 no_saver: false
 num_classes: null
-opt: adamw
+opt: lamb
 opt_betas:
 - 0.9
 - 0.999
@@ -118,7 +118,7 @@ split_bn: false
 start_epoch: null
 std: null
 sync_bn: false
-tag: faster_vit_1_224
+tag: mambavision_small_1k
 torchscript: false
 train_interpolation: random
 train_split: train

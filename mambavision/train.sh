@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DATA_PATH="/media/ali/ali/imagenet-a/"
-MODEL=faster_vit_0_224
+DATA_PATH="/ImageNet/train"
+MODEL=mamba_vision_T
 BS=2
 EXP=Test
 LR=8e-4

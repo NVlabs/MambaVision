@@ -21,10 +21,7 @@ from functools import partial
 import torch
 import torch.nn as nn
 import torch.nn.parallel
-#from models.faster_vit import *
-#from models.gcvit import *
 from timm.data import create_dataset, create_loader, resolve_data_config, RealLabelsImagenet
-#from timm.layers import apply_test_time_pool, set_fast_norm
 from timm.models import create_model, load_checkpoint, is_model, list_models
 from timm.utils import accuracy, AverageMeter, natural_key, setup_default_logging, set_jit_fuser, \
     decay_batch_step, check_batch_size_retry, ParseKwargs
@@ -192,19 +189,11 @@ def validate(args):
     elif args.input_size is not None:
         in_chans = args.input_size[0]
 
-    from fastervit import create_model
-    model = create_model('faster_vit_0_224', 
+    from mambavision import create_model
+    model = create_model('mamba_vision_T', 
                           pretrained=True,
-                          model_path="/tmp/faster_vit_0.pth.tar")
-    # model = create_model(
-    #     args.model,
-    #     pretrained=args.pretrained,
-    #     num_classes=args.num_classes,
-    #     in_chans=in_chans,
-    #     global_pool=args.gp,
-    #     scriptable=args.torchscript,
-    #     **args.model_kwargs,
-    # )
+                          model_path="/tmp/mambavision_tiny_1k.pth.tar")
+    
     if args.num_classes is None:
         assert hasattr(model, 'num_classes'), 'Model must have `num_classes` attr if not set on cmd line/config.'
         args.num_classes = model.num_classes
