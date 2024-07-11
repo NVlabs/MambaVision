@@ -17,14 +17,18 @@ MambaVision demonstrates a strong performance by achieving a new SOTA Pareto-fro
 terms of Top-1 accuracy and throughput. 
 
 <p align="center">
-<img src="https://github.com/NVlabs/FasterViT/assets/26806394/6357de9e-5d7f-4e03-8009-2bad1373096c" width=62% height=62% 
+<img src="https://github.com/NVlabs/MambaVision/assets/26806394/79dcf841-3966-4b77-883d-76cd5e1d4320" width=62% height=62% 
 class="center">
 </p>
 
 We introduce a novel mixer block by creating a symmetric path without SSM to enhance the modeling of global context: 
 
 
-![teaser](./mambavision/assets/block.png)
+<p align="center">
+<img src="https://github.com/NVlabs/MambaVision/assets/26806394/295c0984-071e-4c84-b2c8-9059e2794182" width=22% height=22% 
+class="center">
+</p>
+
 
 
 MambaVision has a hierarchial architecture that employs both self-attention and mixer blocks:
@@ -151,6 +155,7 @@ We can also simply test the model by passing a dummy input image. The output is 
     <td><a href="https://drive.google.com/file/d/1fw1bo_oNtIImScW38DFJIPKnRt6GrlS9/view?usp=sharing">model</a></td>
 </tr>
 
+</table>
 
 ## Installation
 
