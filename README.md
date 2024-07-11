@@ -56,9 +56,7 @@ A pretrained MambaVision model with default hyper-parameters can be created as i
 
 # Define mamba_vision_T model with 224 x 224 resolution
 
->>> model = create_model('mamba_vision_T', 
-                          pretrained=True,
-                          model_path="/tmp/mambavision_tiny_1k.pth.tar")
+>>> model = create_model('mamba_vision_T', pretrained=True, model_path="/tmp/mambavision_tiny_1k.pth.tar")
 ```
 
 `model_path` is used to set the directory to download the model.

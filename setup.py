@@ -12,7 +12,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='mambavision',
-    version='1.0.0',
+    version='1.0.6',
     description='MambaVision: A Hybrid Mamba-Transformer Vision Backbone',
     long_description=long_description,
     long_description_content_type='text/markdown',
