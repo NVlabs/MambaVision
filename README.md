@@ -23,7 +23,7 @@ We introduce a novel mixer block by creating a symmetric path without SSM to enh
 
 
 <p align="center">
-<img src="https://github.com/NVlabs/MambaVision/assets/26806394/295c0984-071e-4c84-b2c8-9059e2794182" width=22% height=22% 
+<img src="https://github.com/NVlabs/MambaVision/assets/26806394/295c0984-071e-4c84-b2c8-9059e2794182" width=32% height=32% 
 class="center">
 </p>
 
@@ -35,6 +35,8 @@ MambaVision has a hierarchial architecture that employs both self-attention and 
 
 
 ## 💥 News 💥
+- **[07.11.2024]** [Mambavision pip package](https://pypi.org/project/mambavision/) is released !
+
 - **[07.10.2024]** We have released the code and model checkpoints for Mambavision !
 
 ## Quick Start
