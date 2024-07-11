@@ -2,8 +2,6 @@
 
 Official PyTorch implementation of **MambaVision: A Hybrid Mamba-Transformer Vision Backbone**.
 
-We propose a novel hybrid Mamba-Transformer backbone, denoted as MambaVision, which is specifically tailored for vision applications. Our core contribution includes redesigning the Mamba formulation to enhance its capability for efficient modeling of visual features. In addition, we conduct a comprehensive ablation study on the feasibility of integrating Vision Transformers (ViT) with Mamba. Our results demonstrate that equipping the Mamba architecture with several self-attention blocks at the final layers greatly improves the modeling capacity to capture long-range spatial dependencies. Based on our findings, we introduce a family of MambaVision models with a hierarchical architecture to meet various design criteria. For Image classification on ImageNet-1K dataset, MambaVision model variants achieve a new State-of-the-Art (SOTA) performance in terms of Top-1 accuracy and image throughput. In downstream tasks such as object detection, instance segmentation and semantic segmentation on MS COCO and ADE20K datasets, MambaVision outperforms comparably-sized backbones and demonstrates more favorable performance.
-
 [![Star on GitHub](https://img.shields.io/github/stars/NVlabs/MambaVision.svg?style=social)](https://github.com/NVlabs/MambaVision/stargazers)
 
 [Ali Hatamizadeh](https://research.nvidia.com/person/ali-hatamizadeh),
