@@ -4,7 +4,7 @@ Official PyTorch implementation of **MambaVision: A Hybrid Mamba-Transformer Vis
 
 [![Star on GitHub](https://img.shields.io/github/stars/NVlabs/MambaVision.svg?style=social)](https://github.com/NVlabs/MambaVision/stargazers)
 
-[Ali Hatamizadeh](https://research.nvidia.com/person/ali-hatamizadeh),
+[Ali Hatamizadeh](https://research.nvidia.com/person/ali-hatamizadeh) and
 [Jan Kautz](https://jankautz.com/), 
 
 For business inquiries, please visit our website and submit the form: [NVIDIA Research Licensing](https://www.nvidia.com/en-us/research/inquiries/)
