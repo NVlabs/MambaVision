@@ -52,9 +52,9 @@ pip install mambavision
 A pretrained MambaVision model with default hyper-parameters can be created as in:
 
 ```python
->>> from fastervit import create_model
+>>> from mambavision import create_model
 
-# Define fastervit-0 model with 224 x 224 resolution
+# Define mamba_vision_T model with 224 x 224 resolution
 
 >>> model = create_model('mamba_vision_T', 
                           pretrained=True,
@@ -75,7 +75,7 @@ We can also simply test the model by passing a dummy input image. The output is 
 ## Results + Pretrained Models
 
 ### ImageNet-1K
-**FasterViT ImageNet-1K Pretrained Models**
+**MambaVision ImageNet-1K Pretrained Models**
 
 <table>
   <tr>
@@ -177,7 +177,7 @@ python validate.py \
 --batch-size <batch-size-per-gpu
 ``` 
 
-Here `--model` is the MambaVision variant (e.g. `mambavision_tiny_1k`), `--checkpoint` is the path to pretrained model weights, `--data_dir` is the path to ImageNet-1K validation set and `--batch-size` is the number of batch size. We also provide a sample script [here](./fastervit/validate.sh). 
+Here `--model` is the MambaVision variant (e.g. `mambavision_tiny_1k`), `--checkpoint` is the path to pretrained model weights, `--data_dir` is the path to ImageNet-1K validation set and `--batch-size` is the number of batch size. We also provide a sample script [here](./mambavision/validate.sh). 
 
 
 ## Star History
