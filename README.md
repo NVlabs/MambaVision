@@ -76,7 +76,15 @@ Using the pretrained models from our pip package, you can simply run validation:
 ```
 python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batch-size $BS 
 ``` 
+## FAQ
 
+1. Can I apply MambaVision for downstream tasks like detection, segmentation ? 
+
+Yes ! we are working to have it released very soon. But employing MambaVision backbones for these tasks is very similar to other models in `mmseg` or `mmdet` packages.
+
+2. I am interested in re-implementing MambaVision in my own repository. Can we use the pretrained weights ? 
+
+Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Please submit an issue in this repo and we will add your repository to the README of our codebase and properly acknowledge your efforts. 
 
 ## Results + Pretrained Models
 
