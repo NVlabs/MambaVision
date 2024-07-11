@@ -66,9 +66,17 @@ We can also simply test the model by passing a dummy input image. The output is 
 ```python
 >>> import torch
 
->>> image = torch.rand(1, 3, 224, 224)
->>> output = model(image) # torch.Size([1, 1000])
+>>> image = torch.rand(1, 3, 224, 224).cuda() # place image on cuda
+>>> model = model.cuda() # place model on cuda
+>>> output = model(image) # output logit size is [1, 1000]
 ```
+
+Using the pretrained models from our pip package, you can simply run validation:
+
+```
+python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batch-size $BS 
+``` 
+
 
 ## Results + Pretrained Models
 

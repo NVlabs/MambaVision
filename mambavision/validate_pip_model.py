@@ -190,9 +190,9 @@ def validate(args):
         in_chans = args.input_size[0]
 
     from mambavision import create_model
-    model = create_model('mamba_vision_T', 
-                          pretrained=True,
-                          model_path="/tmp/mambavision_tiny_1k.pth.tar")
+    model = create_model(args.model, 
+                         pretrained=True,
+                         model_path="/tmp/model.pth.tar")
     
     if args.num_classes is None:
         assert hasattr(model, 'num_classes'), 'Model must have `num_classes` attr if not set on cmd line/config.'
