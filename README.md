@@ -59,7 +59,7 @@ A pretrained MambaVision model with default hyper-parameters can be created as i
 >>> model = create_model('mamba_vision_T', pretrained=True, model_path="/tmp/mambavision_tiny_1k.pth.tar")
 ```
 
-`model_path` is used to set the directory to download the model.
+Available list of pretrained models include `mamba_vision_T`, `mamba_vision_T2`, `mamba_vision_S`, `mamba_vision_B`, `mamba_vision_L` and `mamba_vision_L2`.  
 
 We can also simply test the model by passing a dummy input image. The output is the logits:
 
