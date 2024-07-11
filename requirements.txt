@@ -1,0 +1,5 @@
+causal-conv1d==1.0.2
+mamba-ssm==1.0.1
+timm==0.9.0
+tensorboardX
+einops
