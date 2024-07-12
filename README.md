@@ -1,6 +1,7 @@
 # MambaVision: A Hybrid Mamba-Transformer Vision Backbone
 
-Official PyTorch implementation of **MambaVision: A Hybrid Mamba-Transformer Vision Backbone**.
+Official PyTorch implementation of [**MambaVision: A Hybrid Mamba-Transformer Vision Backbone**](https://arxiv.org/abs/2407.08083).
+
 
 [![Star on GitHub](https://img.shields.io/github/stars/NVlabs/MambaVision.svg?style=social)](https://github.com/NVlabs/MambaVision/stargazers)
 
@@ -35,6 +36,9 @@ MambaVision has a hierarchial architecture that employs both self-attention and 
 
 
 ## 💥 News 💥
+
+- **[07.11.2024]** [Paper](https://arxiv.org/abs/2407.08083) is now available on arXiv !
+
 - **[07.11.2024]** [Mambavision pip package](https://pypi.org/project/mambavision/) is released !
 
 - **[07.10.2024]** We have released the code and model checkpoints for Mambavision !
