@@ -37,7 +37,7 @@ MambaVision has a hierarchial architecture that employs both self-attention and 
 
 ## 💥 News 💥
 
-- **[07.11.2024]** [Paper](https://arxiv.org/abs/2407.08083) is now available on arXiv !
+- **[07.12.2024]** [Paper](https://arxiv.org/abs/2407.08083) is now available on arXiv !
 
 - **[07.11.2024]** [Mambavision pip package](https://pypi.org/project/mambavision/) is released !
 
