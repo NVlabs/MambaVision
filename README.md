@@ -30,7 +30,7 @@ class="center">
 
 
 
-MambaVision has a hierarchial architecture that employs both self-attention and mixer blocks:
+MambaVision has a hierarchical architecture that employs both self-attention and mixer blocks:
 
 ![teaser](./mambavision/assets/arch.png)
 
