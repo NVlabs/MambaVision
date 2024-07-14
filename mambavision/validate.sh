@@ -1,5 +1,5 @@
 #!/bin/bash
-DATA_PATH="/ImageNet-Validation/val"
+DATA_PATH="/ImageNet/val"
 BS=128
 checkpoint='/model_weights/mambavision_tiny_1k.pth.tar'
 

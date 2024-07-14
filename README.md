@@ -30,12 +30,14 @@ class="center">
 
 
 
-MambaVision has a hierarchial architecture that employs both self-attention and mixer blocks:
+MambaVision has a hierarchical architecture that employs both self-attention and mixer blocks:
 
 ![teaser](./mambavision/assets/arch.png)
 
 
 ## 💥 News 💥
+
+- **[07.14.2024]** We added support for images with any resolution for MambaVision (no change in code needed) ! 
 
 - **[07.11.2024]** [Paper](https://arxiv.org/abs/2407.08083) is now available on arXiv !
 
@@ -58,19 +60,19 @@ A pretrained MambaVision model with default hyper-parameters can be created as i
 ```python
 >>> from mambavision import create_model
 
-# Define mamba_vision_T model with 224 x 224 resolution
+# Define mamba_vision_T model
 
 >>> model = create_model('mamba_vision_T', pretrained=True, model_path="/tmp/mambavision_tiny_1k.pth.tar")
 ```
 
 Available list of pretrained models include `mamba_vision_T`, `mamba_vision_T2`, `mamba_vision_S`, `mamba_vision_B`, `mamba_vision_L` and `mamba_vision_L2`.  
 
-We can also simply test the model by passing a dummy input image. The output is the logits:
+We can also simply test the model by passing a dummy image with **any resolution**. The output is the logits:
 
 ```python
 >>> import torch
 
->>> image = torch.rand(1, 3, 224, 224).cuda() # place image on cuda
+>>> image = torch.rand(1, 3, 512, 224).cuda() # place image on cuda
 >>> model = model.cuda() # place model on cuda
 >>> output = model(image) # output logit size is [1, 1000]
 ```
@@ -82,11 +84,16 @@ python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batc
 ``` 
 ## FAQ
 
-1. Can I apply MambaVision for downstream tasks like detection, segmentation ? 
+1. Does MambaVision support processing images with any input resolutions ? 
+
+Yes ! you can pass images with any arbitrary resolutions without the need to change the model.
+
+
+2. Can I apply MambaVision for downstream tasks like detection, segmentation ? 
 
 Yes ! we are working to have it released very soon. But employing MambaVision backbones for these tasks is very similar to other models in `mmseg` or `mmdet` packages.
 
-2. I am interested in re-implementing MambaVision in my own repository. Can we use the pretrained weights ? 
+3. I am interested in re-implementing MambaVision in my own repository. Can we use the pretrained weights ? 
 
 Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Please submit an issue in this repo and we will add your repository to the README of our codebase and properly acknowledge your efforts. 
 

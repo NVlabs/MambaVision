@@ -14,7 +14,11 @@ import torch.nn as nn
 from timm.models.registry import register_model
 import math
 from timm.models.layers import trunc_normal_, DropPath, LayerNorm2d
-from timm.models._builder import resolve_pretrained_cfg, _update_default_kwargs
+from timm.models._builder import resolve_pretrained_cfg
+try:
+    from timm.models._builder import _update_default_kwargs as update_args
+except:
+    from timm.models._builder import _update_default_model_kwargs as update_args
 from timm.models.vision_transformer import Mlp, PatchEmbed
 from timm.models.layers import DropPath, trunc_normal_
 from timm.models.registry import register_model
@@ -471,7 +475,7 @@ class Block(nn.Module):
                  norm_layer=nn.LayerNorm, 
                  Mlp_block=Mlp,
                  layer_scale=None,
-                 window_size=0):
+                 ):
         super().__init__()
         self.norm1 = norm_layer(dim)
         if counter in transformer_blocks:
@@ -532,6 +536,7 @@ class MambaVisionLayer(nn.Module):
             dim: feature size dimension.
             depth: number of layers in each stage.
             window_size: window size in each stage.
+            conv: bool argument for conv stage flag.
             downsample: bool argument for down-sampling.
             mlp_ratio: MLP ratio.
             num_heads: number of heads in each stage.
@@ -550,42 +555,50 @@ class MambaVisionLayer(nn.Module):
         self.conv = conv
         self.transformer_block = False
         if conv:
-            self.blocks = nn.ModuleList([
-                ConvBlock(dim=dim,
-                          drop_path=drop_path[i] if isinstance(drop_path, list) else drop_path,
-                          layer_scale=layer_scale_conv)
-                for i in range(depth)])
+            self.blocks = nn.ModuleList([ConvBlock(dim=dim,
+                                                   drop_path=drop_path[i] if isinstance(drop_path, list) else drop_path,
+                                                   layer_scale=layer_scale_conv)
+                                                   for i in range(depth)])
             self.transformer_block = False
         else:
             self.transformer_block = True
-            self.blocks = nn.ModuleList([
-                Block(dim=dim,counter=i, transformer_blocks=transformer_blocks,
-                            num_heads=num_heads,
-                            mlp_ratio=mlp_ratio,
-                            qkv_bias=qkv_bias,
-                            qk_scale=qk_scale,
-                            drop=drop,
-                            attn_drop=attn_drop,
-                            drop_path=drop_path[i] if isinstance(drop_path, list) else drop_path,
-                            window_size=window_size,
-                            layer_scale=layer_scale,
-                           )
-                for i in range(depth)])
+            self.blocks = nn.ModuleList([Block(dim=dim,
+                                               counter=i, 
+                                               transformer_blocks=transformer_blocks,
+                                               num_heads=num_heads,
+                                               mlp_ratio=mlp_ratio,
+                                               qkv_bias=qkv_bias,
+                                               qk_scale=qk_scale,
+                                               drop=drop,
+                                               attn_drop=attn_drop,
+                                               drop_path=drop_path[i] if isinstance(drop_path, list) else drop_path,
+                                               layer_scale=layer_scale)
+                                               for i in range(depth)])
             self.transformer_block = True
 
         self.downsample = None if not downsample else Downsample(dim=dim)
         self.do_gt = False
         self.window_size = window_size
 
-
     def forward(self, x):
-        B, C, H, W = x.shape
+        _, _, H, W = x.shape
+
         if self.transformer_block:
+            pad_r = (self.window_size - W % self.window_size) % self.window_size
+            pad_b = (self.window_size - H % self.window_size) % self.window_size
+            if pad_r > 0 or pad_b > 0:
+                x = torch.nn.functional.pad(x, (0,pad_r,0,pad_b))
+                _, _, Hp, Wp = x.shape
+            else:
+                Hp, Wp = H, W
             x = window_partition(x, self.window_size)
+
         for _, blk in enumerate(self.blocks):
             x = blk(x)
         if self.transformer_block:
-            x = window_reverse(x, self.window_size, H, W)
+            x = window_reverse(x, self.window_size, Hp, Wp)
+            if pad_r > 0 or pad_b > 0:
+                x = x[:, :, :H, :W].contiguous()
         if self.downsample is None:
             return x
         return self.downsample(x)
@@ -603,7 +616,6 @@ class MambaVision(nn.Module):
                  window_size,
                  mlp_ratio,
                  num_heads,
-                 resolution=224,
                  drop_path_rate=0.2,
                  in_chans=3,
                  num_classes=1000,
@@ -621,7 +633,6 @@ class MambaVision(nn.Module):
             window_size: window size in each stage.
             mlp_ratio: MLP ratio.
             num_heads: number of heads in each stage.
-            resolution: input image resolution.
             drop_path_rate: drop path rate.
             in_chans: number of input channels.
             num_classes: number of classes.
@@ -634,7 +645,6 @@ class MambaVision(nn.Module):
             layer_scale_conv: conv layer scaling coefficient.
         """
         super().__init__()
-
         num_features = int(dim * 2 ** (len(depths) - 1))
         self.num_classes = num_classes
         self.patch_embed = PatchEmbed(in_chans=in_chans, in_dim=in_dim, dim=dim)
@@ -643,24 +653,22 @@ class MambaVision(nn.Module):
         for i in range(len(depths)):
             conv = True if (i == 0 or i == 1) else False
             level = MambaVisionLayer(dim=int(dim * 2 ** i),
-                                   depth=depths[i],
-                                   num_heads=num_heads[i],
-                                   window_size=window_size[i],
-                                   mlp_ratio=mlp_ratio,
-                                   qkv_bias=qkv_bias,
-                                   qk_scale=qk_scale,
-                                   conv=conv,
-                                   drop=drop_rate,
-                                   attn_drop=attn_drop_rate,
-                                   drop_path=dpr[sum(depths[:i]):sum(depths[:i + 1])],
-                                   downsample=(i < 3),
-                                   layer_scale=layer_scale,
-                                   layer_scale_conv=layer_scale_conv,
-                                   transformer_blocks=list(range(depths[i]//2+1, depths[i])) if depths[i]%2!=0 else list(range(depths[i]//2, depths[i]))
-                                   )
-
+                                     depth=depths[i],
+                                     num_heads=num_heads[i],
+                                     window_size=window_size[i],
+                                     mlp_ratio=mlp_ratio,
+                                     qkv_bias=qkv_bias,
+                                     qk_scale=qk_scale,
+                                     conv=conv,
+                                     drop=drop_rate,
+                                     attn_drop=attn_drop_rate,
+                                     drop_path=dpr[sum(depths[:i]):sum(depths[:i + 1])],
+                                     downsample=(i < 3),
+                                     layer_scale=layer_scale,
+                                     layer_scale_conv=layer_scale_conv,
+                                     transformer_blocks=list(range(depths[i]//2+1, depths[i])) if depths[i]%2!=0 else list(range(depths[i]//2, depths[i])),
+                                     )
             self.levels.append(level)
-
         self.norm = nn.BatchNorm2d(num_features)
         self.avgpool = nn.AdaptiveAvgPool2d(1)
         self.head = nn.Linear(num_features, num_classes) if num_classes > 0 else nn.Identity()
@@ -712,7 +720,7 @@ class MambaVision(nn.Module):
 def mamba_vision_T(pretrained=False, **kwargs):
     model_path = kwargs.pop("model_path", "/tmp/mamba_vision_T.pth.tar")
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_T').to_dict()
-    _update_default_kwargs(pretrained_cfg, kwargs, kwargs_filter=None)
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
     model = MambaVision(depths=[1, 3, 8, 4],
                         num_heads=[2, 4, 8, 16],
                         window_size=[8, 8, 14, 7],
@@ -737,7 +745,7 @@ def mamba_vision_T(pretrained=False, **kwargs):
 def mamba_vision_T2(pretrained=False, **kwargs):
     model_path = kwargs.pop("model_path", "/tmp/mamba_vision_T2.pth.tar")
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_T2').to_dict()
-    _update_default_kwargs(pretrained_cfg, kwargs, kwargs_filter=None)
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
     model = MambaVision(depths=[1, 3, 11, 4],
                         num_heads=[2, 4, 8, 16],
                         window_size=[8, 8, 14, 7],
@@ -762,7 +770,7 @@ def mamba_vision_T2(pretrained=False, **kwargs):
 def mamba_vision_S(pretrained=False, **kwargs):
     model_path = kwargs.pop("model_path", "/tmp/mamba_vision_S.pth.tar")
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_S').to_dict()
-    _update_default_kwargs(pretrained_cfg, kwargs, kwargs_filter=None)
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
     model = MambaVision(depths=[3, 3, 7, 5],
                         num_heads=[2, 4, 8, 16],
                         window_size=[8, 8, 14, 7],
@@ -787,7 +795,7 @@ def mamba_vision_S(pretrained=False, **kwargs):
 def mamba_vision_B(pretrained=False, **kwargs):
     model_path = kwargs.pop("model_path", "/tmp/mamba_vision_B.pth.tar")
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_B').to_dict()
-    _update_default_kwargs(pretrained_cfg, kwargs, kwargs_filter=None)
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
     model = MambaVision(depths=[3, 3, 10, 5],
                         num_heads=[2, 4, 8, 16],
                         window_size=[8, 8, 14, 7],
@@ -814,7 +822,7 @@ def mamba_vision_B(pretrained=False, **kwargs):
 def mamba_vision_L(pretrained=False, **kwargs):
     model_path = kwargs.pop("model_path", "/tmp/mamba_vision_L.pth.tar")
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_L').to_dict()
-    _update_default_kwargs(pretrained_cfg, kwargs, kwargs_filter=None)
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
     model = MambaVision(depths=[3, 3, 10, 5],
                         num_heads=[4, 8, 16, 32],
                         window_size=[8, 8, 14, 7],
@@ -841,7 +849,7 @@ def mamba_vision_L(pretrained=False, **kwargs):
 def mamba_vision_L2(pretrained=False, **kwargs):
     model_path = kwargs.pop("model_path", "/tmp/mamba_vision_L2.pth.tar")
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_L2').to_dict()
-    _update_default_kwargs(pretrained_cfg, kwargs, kwargs_filter=None)
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
     model = MambaVision(depths=[3, 3, 12, 5],
                         num_heads=[4, 8, 16, 32],
                         window_size=[8, 8, 14, 7],
