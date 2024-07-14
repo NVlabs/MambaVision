@@ -122,7 +122,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>31.8</td>
     <td>4.4</td>
-    <td><a href="https://drive.google.com/file/d/1zE8czwSTG5ogcsb93A95o_F3rlYf8R1G/view?usp=sharing">model</a></td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-T-1K/resolve/main/mambavision_tiny_1k.pth.tar">model</a></td>
 </tr>
 
 <tr>
@@ -133,7 +133,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>35.1</td>
     <td>5.1</td>
-    <td><a href="https://drive.google.com/file/d/1KNJVRRBUSqOq7ZxqH1mDth4wWL5f1SFq/view?usp=sharing">model</a></td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-T2-1K/resolve/main/mambavision_tiny2_1k.pth.tar">model</a></td>
 </tr>
 
 <tr>
@@ -144,7 +144,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>50.1</td>
     <td>7.5</td>
-    <td><a href="https://drive.google.com/file/d/1XoSctKJgRI6OMmYmdKOoTzvnoOtfqI64/view?usp=sharing">model</a></td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-S-1K/resolve/main/mambavision_small_1k.pth.tar">model</a></td>
 </tr>
 
 <tr>
@@ -155,7 +155,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>97.7</td>
     <td>15.0</td>
-    <td><a href="https://drive.google.com/file/d/1wR2UeFzSmNjrC3jqJgp4IOGvYhlO9QYw/view?usp=sharing">model</a></td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-B-1K/resolve/main/mambavision_base_1k.pth.tar">model</a></td>
 </tr>
 
 <tr>
@@ -166,7 +166,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>227.9</td>
     <td>34.9</td>
-    <td><a href="https://drive.google.com/file/d/1YfA9K_ZbZcoLCif-ltLWCvj2pQCvb4bJ/view?usp=sharing">model</a></td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L-1K/resolve/main/mambavision_large_1k.pth.tar">model</a></td>
 </tr>
 
 <tr>
@@ -177,7 +177,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>241.5</td>
     <td>37.5</td>
-    <td><a href="https://drive.google.com/file/d/1fw1bo_oNtIImScW38DFJIPKnRt6GrlS9/view?usp=sharing">model</a></td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L2-1K/resolve/main/mambavision_large2_1k.pth.tar">model</a></td>
 </tr>
 
 </table>
