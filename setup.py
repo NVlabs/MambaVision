@@ -12,7 +12,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='mambavision',
-    version='1.0.7',
+    version='1.0.8',
     description='MambaVision: A Hybrid Mamba-Transformer Vision Backbone',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -35,7 +35,7 @@ setup(
     keywords='pytorch pretrained models mamba vision transformer vit',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
-    install_requires=['timm==0.9.0', 'mamba-ssm==1.0.1', 'causal-conv1d==1.0.2', 'einops'],
+    install_requires=['torch >= 2.1.2', 'timm==0.9.0', 'mamba-ssm==1.0.1', 'causal-conv1d==1.0.2', 'einops'],
     license="NVIDIA Source Code License-NC",
     python_requires='>=3.7',
 )
