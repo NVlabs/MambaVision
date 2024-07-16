@@ -204,6 +204,18 @@ python validate.py \
 
 Here `--model` is the MambaVision variant (e.g. `mambavision_tiny_1k`), `--checkpoint` is the path to pretrained model weights, `--data_dir` is the path to ImageNet-1K validation set and `--batch-size` is the number of batch size. We also provide a sample script [here](./mambavision/validate.sh). 
 
+## Citation
+
+If you find MambaVision to be useful for your work, please consider citing our paper: 
+
+```
+@article{hatamizadeh2024mambavision,
+  title={MambaVision: A Hybrid Mamba-Transformer Vision Backbone},
+  author={Hatamizadeh, Ali and Kautz, Jan},
+  journal={arXiv preprint arXiv:2407.08083},
+  year={2024}
+}
+```
 
 ## Star History
 
