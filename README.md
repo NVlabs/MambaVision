@@ -37,6 +37,8 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 ## 💥 News 💥
 
+- **[07.24.2024]** MambaVision [Hugging Face](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) models are released ! 
+
 - **[07.14.2024]** We added support for processing any resolution images.
 
 - **[07.12.2024]** [Paper](https://arxiv.org/abs/2407.08083) is now available on arXiv !
@@ -47,9 +49,111 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 ## Quick Start
 
-### Classification
 
-We can import pre-trained MambaVision models with **1 line of code**:
+### Hugging Face (Classification + Feature extraction)
+
+Pretrained MambaVision models can be simply used via [Hugging Face](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) library with **1 line of code**. First install the requirements: 
+
+```bash
+pip install mambavision
+```
+
+The model can be simply imported:
+
+
+```python
+>>> from transformers import AutoModelForImageClassification
+
+>>> model = AutoModelForImageClassification.from_pretrained("nvidia/MambaVision-T-1K", trust_remote_code=True)
+```
+
+We demonstrate an end-to-end image classification example in the following.
+
+Given the following image from [COCO dataset](https://cocodataset.org/#home)  val set as an input:
+
+
+<p align="center">
+<img src="https://cdn-uploads.huggingface.co/production/uploads/64414b62603214724ebd2636/4duSnqLf4lrNiAHczSmAN.jpeg" width=70% height=70% 
+class="center">
+</p>
+
+
+The following snippet can be used:
+
+```python
+from transformers import AutoModelForImageClassification
+from PIL import Image
+from timm.data.transforms_factory import create_transform
+import requests
+
+model = AutoModelForImageClassification.from_pretrained("nvidia/MambaVision-T-1K", trust_remote_code=True)
+
+# eval mode for inference
+model.cuda().eval()
+
+# prepare image for the model
+url = 'http://images.cocodataset.org/val2017/000000020247.jpg'
+image = Image.open(requests.get(url, stream=True).raw)
+input_resolution = (3, 224, 224)  # MambaVision supports any input resolutions
+
+transform = create_transform(input_size=input_resolution,
+                             is_training=False,
+                             mean=model.config.mean,
+                             std=model.config.std,
+                             crop_mode=model.config.crop_mode,
+                             crop_pct=model.config.crop_pct)
+
+inputs = transform(image).unsqueeze(0).cuda()
+# model inference
+outputs = model(inputs)
+logits = outputs['logits'] 
+predicted_class_idx = logits.argmax(-1).item()
+print("Predicted class:", model.config.id2label[predicted_class_idx])
+```
+
+The predicted label is brown bear, bruin, Ursus arctos.
+
+
+You can also use Hugging Face MambaVision models for feature extraction. The model provides the outputs of each stage of model (hierarchical multi-scale features in 4 stages) as well as the final averaged-pool features that are flattened. The former is used for downstream tasks such as classification and detection. 
+
+The following snippet can be used for feature extraction:
+
+```Python
+from transformers import AutoModel
+from PIL import Image
+from timm.data.transforms_factory import create_transform
+import requests
+
+model = AutoModel.from_pretrained("nvidia/MambaVision-T-1K", trust_remote_code=True)
+
+# eval mode for inference
+model.cuda().eval()
+
+# prepare image for the model
+url = 'http://images.cocodataset.org/val2017/000000020247.jpg'
+image = Image.open(requests.get(url, stream=True).raw)
+input_resolution = (3, 224, 224)  # MambaVision supports any input resolutions
+
+transform = create_transform(input_size=input_resolution,
+                             is_training=False,
+                             mean=model.config.mean,
+                             std=model.config.std,
+                             crop_mode=model.config.crop_mode,
+                             crop_pct=model.config.crop_pct)
+inputs = transform(image).unsqueeze(0).cuda()
+# model inference
+out_avg_pool, features = model(inputs)
+print("Size of the averaged pool features:", out_avg_pool.size())  # torch.Size([1, 640])
+print("Number of stages in extracted features:", len(features)) # 4 stages
+print("Size of extracted features in stage 1:", features[0].size()) # torch.Size([1, 80, 56, 56])
+print("Size of extracted features in stage 4:", features[3].size()) # torch.Size([1, 640, 7, 7])
+```
+
+Currently, we offer [MambaVision-T-1K](https://huggingface.co/nvidia/MambaVision-T-1K), [MambaVision-T2-1K](https://huggingface.co/nvidia/MambaVision-T2-1K), [MambaVision-S-1K](https://huggingface.co/nvidia/MambaVision-S-1K), [MambaVision-B-1K](https://huggingface.co/nvidia/MambaVision-B-1K), [MambaVision-L-1K](https://huggingface.co/nvidia/MambaVision-L-1K) and [MambaVision-L2-1K](https://huggingface.co/nvidia/MambaVision-L2-1K) on Hugging Face. All models can also be viewed [here](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3).
+
+### Classification (pip package)
+
+We can also import pre-trained MambaVision models from the pip package with **1 line of code**:
 
 ```bash
 pip install mambavision
@@ -82,6 +186,7 @@ Using the pretrained models from our pip package, you can simply run validation:
 ```
 python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batch-size $BS 
 ``` 
+
 ## FAQ
 
 1. Does MambaVision support processing images with any input resolutions ? 
@@ -91,7 +196,8 @@ Yes ! you can pass images with any arbitrary resolutions without the need to cha
 
 2. Can I apply MambaVision for downstream tasks like detection, segmentation ? 
 
-Yes ! we are working to have it released very soon. But employing MambaVision backbones for these tasks is very similar to other models in `mmseg` or `mmdet` packages.
+Yes ! we are working to have it released very soon. But employing MambaVision backbones for these tasks is very similar to other models in `mmseg` or `mmdet` packages. In addition, MambaVision [Hugging Face](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) models provide feature extraction capablity which can be used for downstream tasks. Please see the above example. 
+
 
 3. I am interested in re-implementing MambaVision in my own repository. Can we use the pretrained weights ? 
 

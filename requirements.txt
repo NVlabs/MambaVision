@@ -4,3 +4,4 @@ mamba-ssm
 timm
 tensorboardX
 einops
+transformers
