@@ -52,7 +52,7 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 ### Hugging Face (Classification + Feature extraction)
 
-Pretrained MambaVision models can be simply used via [Hugging Face](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) library with **1 line of code**. First install the requirements: 
+Pretrained MambaVision models can be simply used via [Hugging Face](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) library with **a few lines of code**. First install the requirements: 
 
 ```bash
 pip install mambavision
@@ -153,7 +153,7 @@ Currently, we offer [MambaVision-T-1K](https://huggingface.co/nvidia/MambaVision
 
 ### Classification (pip package)
 
-We can also import pre-trained MambaVision models from the pip package with **1 line of code**:
+We can also import pre-trained MambaVision models from the pip package with **a few lines of code**:
 
 ```bash
 pip install mambavision
