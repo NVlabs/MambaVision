@@ -561,7 +561,6 @@ class MambaVisionLayer(nn.Module):
                                                    for i in range(depth)])
             self.transformer_block = False
         else:
-            self.transformer_block = True
             self.blocks = nn.ModuleList([Block(dim=dim,
                                                counter=i, 
                                                transformer_blocks=transformer_blocks,
