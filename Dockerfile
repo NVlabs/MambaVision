@@ -1,7 +1,7 @@
 # Use PyTorch with CUDA and cuDNN
-FROM pytorch/pytorch:2.1.1-cuda12.1-cudnn8-devel
+FROM pytorch/pytorch:2.4.1-cuda12.4-cudnn9-devel
 
-RUN pip install --no-cache-dir tensorboardX causal-conv1d==1.0.2 mamba-ssm==1.0.1 timm==0.9.0 einops transformers
+RUN pip install --no-cache-dir tensorboardX causal-conv1d==1.4.0 mamba-ssm==2.2.2 timm==1.0.9 einops transformers
 
 # Set working directory and copy application code
 WORKDIR /app
