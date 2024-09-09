@@ -1,14 +1,13 @@
 #!/bin/bash
 
-DATA_PATH="/ImageNet/train"
 MODEL=mamba_vision_T
-BS=2
-EXP=Test
-LR=8e-4
+DATA_PATH_TRAIN="/my_dataset/train"
+DATA_PATH_VAL="/my_dataset/val"
+BS=256
+EXP=my_experiment
+LR=5e-4
 WD=0.05
-WR_LR=1e-6
-DR=0.38
-MESA=0.25
+DR=0.2
 
-torchrun --nproc_per_node=1 train.py --mesa ${MESA} --input-size 3 224 224 --crop-pct=0.875 \
---data_dir=$DATA_PATH --model $MODEL --amp --weight-decay ${WD} --drop-path ${DR} --batch-size $BS --tag $EXP --lr $LR --warmup-lr $WR_LR
+torchrun --nproc_per_node=8 train.py --input-size 3 224 224 --crop-pct=0.875 \
+--train-split=$DATA_PATH_TRAIN --val-split=$DATA_PATH_VAL --model $MODEL --amp --weight-decay ${WD} --drop-path ${DR} --batch-size $BS --tag $EXP --lr $LR
