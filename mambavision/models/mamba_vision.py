@@ -30,6 +30,14 @@ from pathlib import Path
 
 
 def _cfg(url='', **kwargs):
+    """
+    Generates a configuration dictionary for model initialization.
+    Args:
+        url (str): URL for the pre-trained model weights.
+        **kwargs: Additional keyword arguments to customize the configuration.
+    Returns:
+        dict: Configuration parameters for the model.
+    """
     return {'url': url,
             'num_classes': 1000,
             'input_size': (3, 224, 224),
