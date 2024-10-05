@@ -325,6 +325,9 @@ If you find MambaVision to be useful for your work, please consider citing our p
 
 ## Star History
 
+[![Stargazers repo roster for @NVlabs/MambaVision](https://bytecrank.com/nastyox/reporoster/php/stargazersSVG.php?user=NVlabs&repo=MambaVision)](https://github.com/NVlabs/MambaVision/stargazers)
+
+
 [![Star History Chart](https://api.star-history.com/svg?repos=NVlabs/MambaVision&type=Date)](https://star-history.com/#NVlabs/MambaVision&Date)
 
 
