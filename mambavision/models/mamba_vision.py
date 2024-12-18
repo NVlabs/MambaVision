@@ -67,7 +67,11 @@ default_cfgs = {
     'mamba_vision_L2': _cfg(url='https://huggingface.co/nvidia/MambaVision-L2-1K/resolve/main/mambavision_large2_1k.pth.tar',
                             crop_pct=1.0,
                             input_size=(3, 224, 224),
-                            crop_mode='center')                                
+                            crop_mode='center'),
+    'mamba_vision_L3': _cfg(url='https://huggingface.co/nvidia/MambaVision-L2-1K/resolve/main/mambavision_large2_1k.pth.tar',
+                            crop_pct=1.0,
+                            input_size=(3, 224, 224),
+                            crop_mode='center'),                               
 }
 
 
@@ -590,6 +594,7 @@ class MambaVisionLayer(nn.Module):
                 _, _, Hp, Wp = x.shape
             else:
                 Hp, Wp = H, W
+            Hp, Wp = H, W
             x = window_partition(x, self.window_size)
 
         for _, blk in enumerate(self.blocks):
@@ -728,14 +733,14 @@ def mamba_vision_T(pretrained=False, **kwargs):
     drop_path_rate = kwargs.pop("drop_path_rate", 0.2)
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_T').to_dict()
     update_args(pretrained_cfg, kwargs, kwargs_filter=None)
-    model = MambaVision(depths=[1, 3, 8, 4],
-                        num_heads=[2, 4, 8, 16],
-                        window_size=[8, 8, 14, 7],
-                        dim=80,
-                        in_dim=32,
-                        mlp_ratio=4,
-                        resolution=224,
-                        drop_path_rate=0.2,
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
                         **kwargs)
     model.pretrained_cfg = pretrained_cfg
     model.default_cfg = model.pretrained_cfg
@@ -761,14 +766,14 @@ def mamba_vision_T2(pretrained=False, **kwargs):
     drop_path_rate = kwargs.pop("drop_path_rate", 0.2)
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_T2').to_dict()
     update_args(pretrained_cfg, kwargs, kwargs_filter=None)
-    model = MambaVision(depths=[1, 3, 11, 4],
-                        num_heads=[2, 4, 8, 16],
-                        window_size=[8, 8, 14, 7],
-                        dim=80,
-                        in_dim=32,
-                        mlp_ratio=4,
-                        resolution=224,
-                        drop_path_rate=0.2,
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
                         **kwargs)
     model.pretrained_cfg = pretrained_cfg
     model.default_cfg = model.pretrained_cfg
@@ -794,14 +799,14 @@ def mamba_vision_S(pretrained=False, **kwargs):
     drop_path_rate = kwargs.pop("drop_path_rate", 0.2)
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_S').to_dict()
     update_args(pretrained_cfg, kwargs, kwargs_filter=None)
-    model = MambaVision(depths=[3, 3, 7, 5],
-                        num_heads=[2, 4, 8, 16],
-                        window_size=[8, 8, 14, 7],
-                        dim=96,
-                        in_dim=64,
-                        mlp_ratio=4,
-                        resolution=224,
-                        drop_path_rate=0.2,
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
                         **kwargs)
     model.pretrained_cfg = pretrained_cfg
     model.default_cfg = model.pretrained_cfg
@@ -828,15 +833,15 @@ def mamba_vision_B(pretrained=False, **kwargs):
     layer_scale = kwargs.pop("layer_scale", 1e-5)
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_B').to_dict()
     update_args(pretrained_cfg, kwargs, kwargs_filter=None)
-    model = MambaVision(depths=[3, 3, 10, 5],
-                        num_heads=[2, 4, 8, 16],
-                        window_size=[8, 8, 14, 7],
-                        dim=128,
-                        in_dim=64,
-                        mlp_ratio=4,
-                        resolution=224,
-                        drop_path_rate=0.3,
-                        layer_scale=1e-5,
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
+                        layer_scale=layer_scale,
                         layer_scale_conv=None,
                         **kwargs)
     model.pretrained_cfg = pretrained_cfg
@@ -864,15 +869,51 @@ def mamba_vision_L(pretrained=False, **kwargs):
     layer_scale = kwargs.pop("layer_scale", 1e-5)
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_L').to_dict()
     update_args(pretrained_cfg, kwargs, kwargs_filter=None)
-    model = MambaVision(depths=[3, 3, 10, 5],
-                        num_heads=[4, 8, 16, 32],
-                        window_size=[8, 8, 14, 7],
-                        dim=196,
-                        in_dim=64,
-                        mlp_ratio=4,
-                        resolution=224,
-                        drop_path_rate=0.3,
-                        layer_scale=1e-5,
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
+                        layer_scale=layer_scale,
+                        layer_scale_conv=None,
+                        **kwargs)
+    model.pretrained_cfg = pretrained_cfg
+    model.default_cfg = model.pretrained_cfg
+    if pretrained:
+        if not Path(model_path).is_file():
+            url = model.default_cfg['url']
+            torch.hub.download_url_to_file(url=url, dst=model_path)
+        model._load_state_dict(model_path)
+    return model
+
+
+@register_pip_model
+@register_model
+def mamba_vision_L_256(pretrained=False, **kwargs):
+    model_path = kwargs.pop("model_path", "/tmp/mamba_vision_L.pth.tar")
+    depths = kwargs.pop("depths", [3, 3, 10, 5])
+    num_heads = kwargs.pop("num_heads", [4, 8, 16, 32])
+    window_size = kwargs.pop("window_size", [8, 8, 16, 8])
+    dim = kwargs.pop("dim", 196)
+    in_dim = kwargs.pop("in_dim", 64)
+    mlp_ratio = kwargs.pop("mlp_ratio", 4)
+    resolution = kwargs.pop("resolution", 224)
+    drop_path_rate = kwargs.pop("drop_path_rate", 0.3)
+    layer_scale = kwargs.pop("layer_scale", 1e-5)
+    pretrained_cfg = resolve_pretrained_cfg('mamba_vision_L').to_dict()
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
+                        layer_scale=layer_scale,
                         layer_scale_conv=None,
                         **kwargs)
     model.pretrained_cfg = pretrained_cfg
@@ -900,15 +941,15 @@ def mamba_vision_L2(pretrained=False, **kwargs):
     layer_scale = kwargs.pop("layer_scale", 1e-5)
     pretrained_cfg = resolve_pretrained_cfg('mamba_vision_L2').to_dict()
     update_args(pretrained_cfg, kwargs, kwargs_filter=None)
-    model = MambaVision(depths=[3, 3, 12, 5],
-                        num_heads=[4, 8, 16, 32],
-                        window_size=[8, 8, 14, 7],
-                        dim=196,
-                        in_dim=64,
-                        mlp_ratio=4,
-                        resolution=224,
-                        drop_path_rate=0.3,
-                        layer_scale=1e-5,
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
+                        layer_scale=layer_scale,
                         layer_scale_conv=None,
                         **kwargs)
     model.pretrained_cfg = pretrained_cfg
@@ -921,3 +962,181 @@ def mamba_vision_L2(pretrained=False, **kwargs):
     return model
 
 
+@register_pip_model
+@register_model
+def mamba_vision_L3(pretrained=False, **kwargs):
+    model_path = kwargs.pop("model_path", "/tmp/mamba_vision_L3.pth.tar")
+    depths = kwargs.pop("depths", [3, 3, 20, 10])
+    num_heads = kwargs.pop("num_heads", [4, 8, 16, 32])
+    window_size = kwargs.pop("window_size", [8, 8, 16, 8])
+    dim = kwargs.pop("dim", 256)
+    in_dim = kwargs.pop("in_dim", 64)
+    mlp_ratio = kwargs.pop("mlp_ratio", 4)
+    resolution = kwargs.pop("resolution", 224)
+    drop_path_rate = kwargs.pop("drop_path_rate", 0.5)
+    layer_scale = kwargs.pop("layer_scale", 1e-5)
+    pretrained_cfg = resolve_pretrained_cfg('mamba_vision_L3').to_dict()
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
+                        layer_scale=layer_scale,
+                        layer_scale_conv=None,
+                        **kwargs)
+    model.pretrained_cfg = pretrained_cfg
+    model.default_cfg = model.pretrained_cfg
+    if pretrained:
+        if not Path(model_path).is_file():
+            url = model.default_cfg['url']
+            torch.hub.download_url_to_file(url=url, dst=model_path)
+        model._load_state_dict(model_path)
+    return model
+
+
+@register_pip_model
+@register_model
+def mamba_vision_L2_256(pretrained=False, **kwargs):
+    model_path = kwargs.pop("model_path", "/tmp/mamba_vision_L2.pth.tar")
+    depths = kwargs.pop("depths", [3, 3, 12, 5])
+    num_heads = kwargs.pop("num_heads", [4, 8, 16, 32])
+    window_size = kwargs.pop("window_size", [8, 8, 16, 8])
+    dim = kwargs.pop("dim", 196)
+    in_dim = kwargs.pop("in_dim", 64)
+    mlp_ratio = kwargs.pop("mlp_ratio", 4)
+    resolution = kwargs.pop("resolution", 224)
+    drop_path_rate = kwargs.pop("drop_path_rate", 0.3)
+    layer_scale = kwargs.pop("layer_scale", 1e-5)
+    pretrained_cfg = resolve_pretrained_cfg('mamba_vision_L2').to_dict()
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
+                        layer_scale=layer_scale,
+                        layer_scale_conv=None,
+                        **kwargs)
+    model.pretrained_cfg = pretrained_cfg
+    model.default_cfg = model.pretrained_cfg
+    if pretrained:
+        if not Path(model_path).is_file():
+            url = model.default_cfg['url']
+            torch.hub.download_url_to_file(url=url, dst=model_path)
+        model._load_state_dict(model_path)
+    return model
+
+
+@register_pip_model
+@register_model
+def mamba_vision_L_512(pretrained=False, **kwargs):
+    model_path = kwargs.pop("model_path", "/tmp/mamba_vision_L.pth.tar")
+    depths = kwargs.pop("depths", [3, 3, 10, 5])
+    num_heads = kwargs.pop("num_heads", [4, 8, 16, 32])
+    window_size = kwargs.pop("window_size", [8, 8, 32, 16])
+    dim = kwargs.pop("dim", 196)
+    in_dim = kwargs.pop("in_dim", 64)
+    mlp_ratio = kwargs.pop("mlp_ratio", 4)
+    resolution = kwargs.pop("resolution", 224)
+    drop_path_rate = kwargs.pop("drop_path_rate", 0.3)
+    layer_scale = kwargs.pop("layer_scale", 1e-5)
+    pretrained_cfg = resolve_pretrained_cfg('mamba_vision_L').to_dict()
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
+                        layer_scale=layer_scale,
+                        layer_scale_conv=None,
+                        **kwargs)
+    model.pretrained_cfg = pretrained_cfg
+    model.default_cfg = model.pretrained_cfg
+    if pretrained:
+        if not Path(model_path).is_file():
+            url = model.default_cfg['url']
+            torch.hub.download_url_to_file(url=url, dst=model_path)
+        model._load_state_dict(model_path)
+    return model
+
+
+@register_pip_model
+@register_model
+def mamba_vision_L2_512(pretrained=False, **kwargs):
+    model_path = kwargs.pop("model_path", "/tmp/mamba_vision_L2.pth.tar")
+    depths = kwargs.pop("depths", [3, 3, 12, 5])
+    num_heads = kwargs.pop("num_heads", [4, 8, 16, 32])
+    window_size = kwargs.pop("window_size", [8, 8, 32, 16])
+    dim = kwargs.pop("dim", 196)
+    in_dim = kwargs.pop("in_dim", 64)
+    mlp_ratio = kwargs.pop("mlp_ratio", 4)
+    resolution = kwargs.pop("resolution", 224)
+    drop_path_rate = kwargs.pop("drop_path_rate", 0.3)
+    layer_scale = kwargs.pop("layer_scale", 1e-5)
+    pretrained_cfg = resolve_pretrained_cfg('mamba_vision_L2').to_dict()
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
+                        layer_scale=layer_scale,
+                        layer_scale_conv=None,
+                        **kwargs)
+    model.pretrained_cfg = pretrained_cfg
+    model.default_cfg = model.pretrained_cfg
+    if pretrained:
+        if not Path(model_path).is_file():
+            url = model.default_cfg['url']
+            torch.hub.download_url_to_file(url=url, dst=model_path)
+        model._load_state_dict(model_path)
+    return model
+
+
+@register_pip_model
+@register_model
+def mamba_vision_L2_1024(pretrained=False, **kwargs):
+    model_path = kwargs.pop("model_path", "/tmp/mamba_vision_L2.pth.tar")
+    depths = kwargs.pop("depths", [3, 3, 12, 5])
+    num_heads = kwargs.pop("num_heads", [4, 8, 16, 32])
+    window_size = kwargs.pop("window_size", [8, 8, 32, 16])
+    dim = kwargs.pop("dim", 196)
+    in_dim = kwargs.pop("in_dim", 64)
+    mlp_ratio = kwargs.pop("mlp_ratio", 4)
+    resolution = kwargs.pop("resolution", 224)
+    drop_path_rate = kwargs.pop("drop_path_rate", 0.3)
+    layer_scale = kwargs.pop("layer_scale", 1e-5)
+    pretrained_cfg = resolve_pretrained_cfg('mamba_vision_L2').to_dict()
+    update_args(pretrained_cfg, kwargs, kwargs_filter=None)
+    model = MambaVision(depths=depths,
+                        num_heads=num_heads,
+                        window_size=window_size,
+                        dim=dim,
+                        in_dim=in_dim,
+                        mlp_ratio=mlp_ratio,
+                        resolution=resolution,
+                        drop_path_rate=drop_path_rate,
+                        layer_scale=layer_scale,
+                        layer_scale_conv=None,
+                        **kwargs)
+    model.pretrained_cfg = pretrained_cfg
+    model.default_cfg = model.pretrained_cfg
+    if pretrained:
+        if not Path(model_path).is_file():
+            url = model.default_cfg['url']
+            torch.hub.download_url_to_file(url=url, dst=model_path)
+        model._load_state_dict(model_path)
+    return model
