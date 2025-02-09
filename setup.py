@@ -26,6 +26,7 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Topic :: Software Development',
         'Topic :: Software Development :: Libraries',
@@ -36,7 +37,7 @@ setup(
     keywords='pytorch pretrained models mamba vision transformer vit',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
-    install_requires=['torch >= 2.1.2', 'timm==1.0.9', 'mamba-ssm==2.2.2', 'causal-conv1d==1.4.0', 'einops'],
+    install_requires=['torch >= 2.4.0', 'timm==1.0.14', 'mamba-ssm==2.2.5', 'causal-conv1d==1.6.0', 'einops'],
     license="NVIDIA Source Code License-NC",
-    python_requires='>=3.7',
+    python_requires='>=3.9',
 )
