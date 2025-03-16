@@ -594,9 +594,8 @@ class MambaVisionLayer(nn.Module):
                 _, _, Hp, Wp = x.shape
             else:
                 Hp, Wp = H, W
-            Hp, Wp = H, W
             x = window_partition(x, self.window_size)
-
+            
         for _, blk in enumerate(self.blocks):
             x = blk(x)
         if self.transformer_block:
