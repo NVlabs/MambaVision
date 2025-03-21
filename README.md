@@ -36,6 +36,9 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 
 ## 💥 News 💥
+
+- **[03.21.2025]** Stay tuned for SOTA ImageNet-21K models ! 
+
 - **[02.26.2025]** MambaVision has been accepted to CVPR 2025 ! 
 
 - **[07.24.2024]** MambaVision [Hugging Face](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) models are released ! 
