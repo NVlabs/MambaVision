@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2024, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2025, NVIDIA CORPORATION.  All rights reserved.
 #
 # NVIDIA CORPORATION and its licensors retain all intellectual property
 # and proprietary rights in and to this software, related documentation
@@ -80,11 +80,11 @@ default_cfgs = {
                             crop_pct=0.93,
                             input_size=(3, 512, 512),
                             crop_mode='squash'),
-    'mamba_vision_L3_256_21k': _cfg(url='https://huggingface.co/nvidia/MambaVision-L3-21K-256/resolve/main/mambavision_L3_21k_700m_256.pth.tar',
+    'mamba_vision_L3_256_21k': _cfg(url='https://huggingface.co/nvidia/MambaVision-L3-21K-256/resolve/main/mambavision_L3_21k_740m_256.pth.tar',
                             crop_pct=1.0,
                             input_size=(3, 256, 256),
                             crop_mode='center'),
-    'mamba_vision_L3_512_21k': _cfg(url='https://huggingface.co/nvidia/MambaVision-L3-21K-512/resolve/main/mambavision_L3_21k_700m_512.pth.tar',
+    'mamba_vision_L3_512_21k': _cfg(url='https://huggingface.co/nvidia/MambaVision-L3-21K-512/resolve/main/mambavision_L3_21k_740m_512.pth.tar',
                             crop_pct=0.93,
                             input_size=(3, 512, 512),
                             crop_mode='squash'),                               
