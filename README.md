@@ -37,7 +37,9 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 ## 💥 News 💥
 
-- **[03.21.2025]** Stay tuned for SOTA ImageNet-21K models ! 
+- **[03.24.2025]** [MambaVision-L3-512-21K](https://huggingface.co/nvidia/MambaVision-L3-512-21K) achieves a **Top-1 accuracy of 88.1** % 
+
+- **[03.24.2025]** New ImageNet-21K models have been added to [MambaVision Hugging Face collection](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) ! 
 
 - **[02.26.2025]** MambaVision has been accepted to CVPR 2025 ! 
 
