@@ -77,7 +77,7 @@ default_cfgs = {
                             input_size=(3, 224, 224),
                             crop_mode='center'),
     'mamba_vision_L2_512_21k': _cfg(url='https://huggingface.co/nvidia/MambaVision-L2-21K-512/resolve/main/mambavision_L2_21k_240m_512.pth.tar',
-                            crop_pct=1.0,
+                            crop_pct=0.93,
                             input_size=(3, 512, 512),
                             crop_mode='squash'),
     'mamba_vision_L3_256_21k': _cfg(url='https://huggingface.co/nvidia/MambaVision-L3-21K-256/resolve/main/mambavision_L3_21k_700m_256.pth.tar',
@@ -85,7 +85,7 @@ default_cfgs = {
                             input_size=(3, 256, 256),
                             crop_mode='center'),
     'mamba_vision_L3_512_21k': _cfg(url='https://huggingface.co/nvidia/MambaVision-L3-21K-512/resolve/main/mambavision_L3_21k_700m_512.pth.tar',
-                            crop_pct=1.0,
+                            crop_pct=0.93,
                             input_size=(3, 512, 512),
                             crop_mode='squash'),                               
 }
