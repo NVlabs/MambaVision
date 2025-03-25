@@ -256,7 +256,7 @@ python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batc
 </tr>
 
 <tr>
-    <<td>MambaVision-L3-512-21K</td>
+    <td>MambaVision-L3-512-21K</td>
     <td>88.1</td>
     <td>98.6</td>
     <td>739.6</td>
