@@ -37,7 +37,9 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 ## 💥 News 💥
 
-- **[03.25.2025]** MambaVision is the first Mamba-based image backbone at scale ! repository updated for 21k models. 
+- **[03.25.2025]** 21K models and code added to the repository.
+
+- **[03.25.2025]** MambaVision is the **first** mamba-based vision backbone at scale ! 
 
 - **[03.24.2025]** [MambaVision-L3-512-21K](https://huggingface.co/nvidia/MambaVision-L3-512-21K) achieves a **Top-1 accuracy of 88.1** % 
 
