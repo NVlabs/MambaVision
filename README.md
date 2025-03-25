@@ -37,9 +37,11 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 ## 💥 News 💥
 
+- **[03.25.2025]** MambaVision is the first Mamba-based image backbone at scale ! repository updated with HF model links and code for 21k models. 
+
 - **[03.24.2025]** [MambaVision-L3-512-21K](https://huggingface.co/nvidia/MambaVision-L3-512-21K) achieves a **Top-1 accuracy of 88.1** % 
 
-- **[03.24.2025]** New ImageNet-21K models have been added to [MambaVision Hugging Face collection](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) ! 
+- **[03.24.2025]** New ImageNet-21K models have been added to [MambaVision Hugging Face collection](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) 
 
 - **[02.26.2025]** MambaVision has been accepted to CVPR 2025 ! 
 
@@ -193,26 +195,80 @@ Using the pretrained models from our pip package, you can simply run validation:
 python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batch-size $BS 
 ``` 
 
-## FAQ
-
-1. Does MambaVision support processing images with any input resolutions ? 
-
-Yes ! you can pass images with any arbitrary resolutions without the need to change the model.
-
-
-2. Can I apply MambaVision for downstream tasks like detection, segmentation ? 
-
-Yes ! we are working to have it released very soon. But employing MambaVision backbones for these tasks is very similar to other models in `mmseg` or `mmdet` packages. In addition, MambaVision [Hugging Face](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) models provide feature extraction capablity which can be used for downstream tasks. Please see the above example. 
-
-
-3. I am interested in re-implementing MambaVision in my own repository. Can we use the pretrained weights ? 
-
-Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Please submit an issue in this repo and we will add your repository to the README of our codebase and properly acknowledge your efforts. 
-
 ## Results + Pretrained Models
 
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Acc@1(%)</th>
+    <th>Acc@5(%)</th>
+    <th>#Params(M)</th>
+    <th>FLOPs(G)</th>
+    <th>Resolution</th>
+    <th>HF</th>
+    <th>Download</th>
+  </tr>
+
+<tr>
+    <td>MambaVision-B-21K</td>
+    <td>84.9</td>
+    <td>97.5</td>
+    <td>97.7</td>
+    <td>15.0</td>
+    <td>224x224</td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-B-21K">link</a></td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-B-21K/resolve/main/mambavision_base_21k.pth.tar">model</a></td>
+</tr>
+
+<tr>
+    <td>MambaVision-L-21K</td>
+    <td>86.1</td>
+    <td>97.9</td>
+    <td>227.9</td>
+    <td>34.9</td>
+    <td>224x224</td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L-21K">link</a></td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L-21K/resolve/main/mambavision_large_21k.pth.tar">model</a></td>
+</tr>
+
+<tr>
+    <td>MambaVision-L2-512-21K</td>
+    <td>87.3</td>
+    <td>98.4</td>
+    <td>241.5</td>
+    <td>196.3</td>
+    <td>512x512</td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L2-512-21K">link</a></td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L2-512-21K/resolve/main/mambavision_L2_21k_240m_512.pth.tar">model</a></td>
+</tr>
+
+<tr>
+    <td>MambaVision-L3-256-21K</td>
+    <td>87.3</td>
+    <td>98.3</td>
+    <td>739.6</td>
+    <td>122.3</td>
+    <td>256x256</td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L3-256-21K">link</a></td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L3-256-21K/resolve/main/mambavision_L3_21k_740m_256.pth.tar">model</a></td>
+</tr>
+
+<tr>
+    <<td>MambaVision-L3-512-21K</td>
+    <td>88.1</td>
+    <td>98.6</td>
+    <td>739.6</td>
+    <td>489.1</td>
+    <td>512x512</td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L3-512-21K">link</a></td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L3-512-21K/resolve/main/mambavision_L3_21k_740m_512.pth.tar">model</a></td>
+</tr>
+
+</table>
+
+
 ### ImageNet-1K
-**MambaVision ImageNet-1K Pretrained Models**
 
 <table>
   <tr>
@@ -223,6 +279,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <th>Resolution</th>
     <th>#Params(M)</th>
     <th>FLOPs(G)</th>
+    <th>HF</th>
     <th>Download</th>
   </tr>
 
@@ -234,6 +291,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>31.8</td>
     <td>4.4</td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-T-1K">link</a></td>
     <td><a href="https://huggingface.co/nvidia/MambaVision-T-1K/resolve/main/mambavision_tiny_1k.pth.tar">model</a></td>
 </tr>
 
@@ -245,6 +303,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>35.1</td>
     <td>5.1</td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-T2-1K">link</a></td>
     <td><a href="https://huggingface.co/nvidia/MambaVision-T2-1K/resolve/main/mambavision_tiny2_1k.pth.tar">model</a></td>
 </tr>
 
@@ -256,6 +315,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>50.1</td>
     <td>7.5</td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-S-1K">link</a></td>
     <td><a href="https://huggingface.co/nvidia/MambaVision-S-1K/resolve/main/mambavision_small_1k.pth.tar">model</a></td>
 </tr>
 
@@ -267,6 +327,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>97.7</td>
     <td>15.0</td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-B-1K">link</a></td>
     <td><a href="https://huggingface.co/nvidia/MambaVision-B-1K/resolve/main/mambavision_base_1k.pth.tar">model</a></td>
 </tr>
 
@@ -278,6 +339,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>227.9</td>
     <td>34.9</td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L-1K">link</a></td>
     <td><a href="https://huggingface.co/nvidia/MambaVision-L-1K/resolve/main/mambavision_large_1k.pth.tar">model</a></td>
 </tr>
 
@@ -289,6 +351,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
     <td>224x224</td>
     <td>241.5</td>
     <td>37.5</td>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L2-1K">link</a></td>
     <td><a href="https://huggingface.co/nvidia/MambaVision-L2-1K/resolve/main/mambavision_large2_1k.pth.tar">model</a></td>
 </tr>
 
@@ -315,6 +378,23 @@ python validate.py \
 ``` 
 
 Here `--model` is the MambaVision variant (e.g. `mambavision_tiny_1k`), `--checkpoint` is the path to pretrained model weights, `--data_dir` is the path to ImageNet-1K validation set and `--batch-size` is the number of batch size. We also provide a sample script [here](./mambavision/validate.sh). 
+
+## FAQ
+
+1. Does MambaVision support processing images with any input resolutions ? 
+
+Yes ! you can pass images with any arbitrary resolutions without the need to change the model.
+
+
+2. Can I apply MambaVision for downstream tasks like detection, segmentation ? 
+
+Yes ! we are working to have it released very soon. But employing MambaVision backbones for these tasks is very similar to other models in `mmseg` or `mmdet` packages. In addition, MambaVision [Hugging Face](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) models provide feature extraction capablity which can be used for downstream tasks. Please see the above example. 
+
+
+3. I am interested in re-implementing MambaVision in my own repository. Can we use the pretrained weights ? 
+
+Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Please submit an issue in this repo and we will add your repository to the README of our codebase and properly acknowledge your efforts. 
+
 
 ## Citation
 
