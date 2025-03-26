@@ -37,6 +37,8 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 ## 💥 News 💥
 
+- **[03.25.2025]** Updated [manuscript](https://arxiv.org/pdf/2407.08083) is now available on arXiv !
+
 - **[03.25.2025]** 21K models and code added to the repository.
 
 - **[03.25.2025]** MambaVision is the **first** mamba-based vision backbone at scale ! 
