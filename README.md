@@ -29,8 +29,6 @@ class="center">
 </p>
 
 
-![arch](https://github.com/user-attachments/assets/372b5de2-256d-4dc5-ad68-f9581bd72966)
-
 MambaVision has a hierarchical architecture that employs both self-attention and mixer blocks:
 
 ![teaser](./mambavision/assets/arch.png)
