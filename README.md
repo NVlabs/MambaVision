@@ -20,6 +20,13 @@ terms of Top-1 accuracy and throughput.
 class="center">
 </p>
 
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/9f44c0a9-3b2b-4887-b5d5-f0aeff0a2d0e" width=62% height=62% 
+class="center">
+</p>
+
+
 We introduce a novel mixer block by creating a symmetric path without SSM to enhance the modeling of global context: 
 
 
