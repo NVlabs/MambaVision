@@ -10,7 +10,7 @@ Official PyTorch implementation of [**MambaVision: A Hybrid Mamba-Transformer Vi
 
 For business inquiries, please visit our website and submit the form: [NVIDIA Research Licensing](https://www.nvidia.com/en-us/research/inquiries/)
 
-Try MambaVision: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Project-MONAI/tutorials/blob/main/3d_segmentation/swin_unetr_brats21_segmentation_3d.ipynb)
+Try MambaVision: [![Open In Colab](https://colab.research.google.com/drive/1WR8LAzRMoK19RiFA-Br0Xxir_Htb3pLf)
 
 --- 
 
@@ -40,7 +40,7 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 ## 💥 News 💥
 
-- **[03.29.2025]** You can now easily run MambaVision in Google Colab (try [here](https://colab.research.google.com/drive/1WR8LAzRMoK19RiFA-Br0Xxir_Htb3pLf#scrollTo=XXo6oMQFL7_P)) ! 
+- **[03.29.2025]** You can now easily run MambaVision in Google Colab (try [here](https://colab.research.google.com/drive/1WR8LAzRMoK19RiFA-Br0Xxir_Htb3pLf)) ! 
 
 - **[03.29.2025]** New MambaVision [pip package](https://pypi.org/project/mambavision/) released ! 
 
@@ -69,7 +69,7 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 ### Google Colab
 
-You can simply try image classification with MambaVision in Google Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Project-MONAI/tutorials/blob/main/3d_segmentation/swin_unetr_brats21_segmentation_3d.ipynb)
+You can simply try image classification with MambaVision in Google Colab: [![Open In Colab](https://colab.research.google.com/drive/1WR8LAzRMoK19RiFA-Br0Xxir_Htb3pLf)
 
 
 ### Hugging Face (Classification + Feature extraction)
