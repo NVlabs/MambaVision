@@ -416,11 +416,12 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
 If you find MambaVision to be useful for your work, please consider citing our paper: 
 
 ```
-@article{hatamizadeh2024mambavision,
-  title={MambaVision: A Hybrid Mamba-Transformer Vision Backbone},
+@inproceedings{hatamizadeh2025mambavision,
+  title={Mambavision: A hybrid mamba-transformer vision backbone},
   author={Hatamizadeh, Ali and Kautz, Jan},
-  journal={arXiv preprint arXiv:2407.08083},
-  year={2024}
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={25261--25270},
+  year={2025}
 }
 ```
 
