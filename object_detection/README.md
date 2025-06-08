@@ -1,34 +1,5 @@
 # Object detection with MambaVision
 
-Our object detection code is built upon on top of the popular [MMDetection](https://github.com/open-mmlab/mmdetection) framework. 
-
-
-## Installation 
-
-Assuming an environment that already works for MambaVision, you need to install the following packages for downstream tasks such as object detection and semantic segmentation:
-
-```
-pip install mmengine==0.10.1 mmcv==2.1.0 opencv-python-headless mmdet==3.3.0 mmsegmentation==1.2.2 mmpretrain==1.2.0
-```
-
-The following represents a compatible environment for running the model:
-
-```
-Pytorch: 2.4.1+cu124
-
-CUDA: 12.4
-
-OpenCV: 4.10.0
-
-MMCV: 2.1.0
-
-MMdet: 3.3.0
-
-MMEngine: 0.10.1
-```
-
-For futher information, please see the MMDetection [installation guide](https://mmdetection.readthedocs.io/en/latest/get_started.html).
-
 ## Detection Results + Models 
 
 <table>
@@ -91,15 +62,99 @@ For futher information, please see the MMDetection [installation guide](https://
 
 </table>
 
+## Installation
+
+Our object detection code is built upon on top of the popular [MMDetection](https://github.com/open-mmlab/mmdetection) framework. 
+
+### 1. Verify MambaVision Backbone Support
+
+Before proceeding, ensure your environment is configured to run MambaVision pre-trained backbones. For detailed prerequisites and setup instructions, see the MambaVision [installation guide](https://github.com/NVlabs/MambaVision/tree/main#Installation).
+
+### 2. Install Dependencies
+
+MambaVision builds on top of MMDetection and relies on the following packages:
+
+```bash
+pip install \
+  mmengine==0.10.1 \
+  mmcv==2.1.0 \
+  opencv-python-headless \
+  mmdet==3.3.0 \
+  mmsegmentation==1.2.2 \
+  mmpretrain==1.2.0
+```
+
+> Tip: You can also pin these into a `requirements.txt` for reproducibility.
+
+### 3. Verify Your Environment
+
+Ensure your system meets the recommended version requirements:
+
+| Component   | Version     |
+| ----------- | ----------- |
+| PyTorch     | 2.4.1+cu124 |
+| CUDA        | 12.4        |
+| OpenCV      | 4.10.0      |
+| MMCV        | 2.1.0       |
+| MMDetection | 3.3.0       |
+| MMEngine    | 0.10.1      |
+
+### 4. Further Reading
+
+For complete setup instructions and troubleshooting, see the MMDetection [installation guide](https://mmdetection.readthedocs.io/en/latest/get_started.html).
+
 
 ## Training
 
-For training, we recommend using our slurm [train script](https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/cascade_mask_rcnn_mamba_vision_base_3x.sh) which uses 8 GPUs.
+Start your experiments with **multi‑GPU training** using our Slurm script on 8 GPUs. First, browse the available configuration files for different MambaVision models [here](https://github.com/NVlabs/MambaVision/tree/main/object_detection/configs/mamba_vision)
+
+Once you’ve chosen a config (e.g., `cascade_mask_rcnn_mamba_vision_tiny_3x_coco.py`), launch training with:
+
+```bash
+# multi‑GPU training (8 GPUs)
+srun --gres=gpu:8 python tools/train.py configs/mamba_vision/<CONFIG_FILE>.py
+```
+
+You can also our slurm [train script](https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/cascade_mask_rcnn_mamba_vision_base_3x.sh).
+
+
+If you’d rather run on a single GPU—for quick tests or debugging—use:
+
+```bash
+# single‑GPU training
+env CUDA_VISIBLE_DEVICES=0 python tools/train.py ${CONFIG}
+```
 
 
 ## Evaluation
 
 For evaluation, we recommend using our slurm [test script](https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/test.sh) for inference with 8 GPUs. 
+
+
+We provide both multi‑GPU and single‑GPU inference options:
+
+### Multi‑GPU Inference
+
+Run our Slurm [test script](https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/test.sh) on 8 GPUs for high‑throughput evaluation:
+
+```bash
+# multi‑GPU inference (8 GPUs)
+bash tools/test.sh
+```
+
+### Single‑GPU Inference
+
+For quick evaluation or debugging on a single GPU, use the standard test tool:
+
+```bash
+# single‑GPU inference
+env CUDA_VISIBLE_DEVICES=0 \
+  python tools/test.py \
+    configs/mamba_vision/<CONFIG_FILE>.py \
+    <CHECKPOINT_FILE>.pth \
+    --eval bbox segm
+```
+
 
 ## Data Preparation
 
