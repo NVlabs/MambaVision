@@ -94,12 +94,12 @@ For futher information, please see the MMDetection [installation guide](https://
 
 ## Training
 
-For training, we recommend using our slurm [train script](https://github.com/open-mmlab/mmdetection) which uses 8 GPUs.
+For training, we recommend using our slurm [train script](https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/cascade_mask_rcnn_mamba_vision_base_3x.sh) which uses 8 GPUs.
 
 
 ## Evaluation
 
-For evaluation, we recommend using our slurm [test script](https://github.com/open-mmlab/mmdetection) for inference with 8 GPUs. 
+For evaluation, we recommend using our slurm [test script](https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/test.sh) for inference with 8 GPUs. 
 
 ## Data Preparation
 
