@@ -40,6 +40,8 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 ## 💥 News 💥
 
+- **[06.07.2025]** Object detection code and models released [here](https://github.com/NVlabs/MambaVision/tree/main/object_detection) !
+
 - **[03.29.2025]** You can now easily run MambaVision in Google Colab. Try here: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1WR8LAzRMoK19RiFA-Br0Xxir_Htb3pLf)
 
 - **[03.29.2025]** New MambaVision [pip package](https://pypi.org/project/mambavision/) released ! 
@@ -372,6 +374,66 @@ python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batc
 
 </table>
 
+## Detection Results + Models 
+
+<table>
+  <tr>
+    <th>Backbone</th>
+    <th>Detector</th>
+    <th>Lr Schd</th>
+    <th>box mAP</th>
+    <th>mask mAP</th>
+    <th>#Params(M)</th>
+    <th>FLOPs(G)</th>
+    <th>HF</th>
+    <th>Config</th>
+    <th>Log</th>
+    <th>Model Ckpt</th>
+  </tr>
+
+<tr>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-T-1K">MambaVision-T-1K</a></td>
+    <td>Cascade Mask R-CNN</td>
+    <td>3x</td>
+    <td>51.1</td>
+    <td>44.3</td>
+    <td>86</td>
+    <td>740</td>
+    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco">HF</a></td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/configs/mamba_vision/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.py">config</a></td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/work_dirs/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/20250607_142007/20250607_142007.log">log</a></td>
+    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
+</tr>
+
+<tr>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-S-1K">MambaVision-S-1K</a></td>
+    <td>Cascade Mask R-CNN</td>
+    <td>3x</td>
+    <td>52.3</td>
+    <td>45.2</td>
+    <td>108</td>
+    <td>828</td>
+    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_small_3x_coco">HF</a></td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/configs/mamba_vision/cascade_mask_rcnn_mamba_vision_small_3x_coco.py">config</a></td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/work_dirs/cascade_mask_rcnn_mamba_vision_small_3x_coco/20250607_144612/20250607_144612.log">log</a></td>
+    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
+</tr>
+
+<tr>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-B-1K">MambaVision-B-1K</a></td>
+    <td>Cascade Mask R-CNN</td>
+    <td>3x</td>
+    <td>52.8</td>
+    <td>45.7</td>
+    <td>145</td>
+    <td>964</td>
+    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_base_3x_coco">HF</a></td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/configs/mamba_vision/cascade_mask_rcnn_mamba_vision_base_3x_coco.py">config</a></td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/work_dirs/cascade_mask_rcnn_mamba_vision_base_3x_coco/20250607_145939/20250607_145939.log">log</a></td>
+    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_base_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_base_3x_coco.pth">model</a></td>
+</tr>
+</table>
+
 ## Installation
 
 We provide a [docker file](./Dockerfile). In addition, assuming that a recent [PyTorch](https://pytorch.org/get-started/locally/) package is installed, the dependencies can be installed by running:
@@ -400,16 +462,13 @@ Here `--model` is the MambaVision variant (e.g. `mambavision_tiny_1k`), `--check
 
 Yes ! you can pass images with any arbitrary resolutions without the need to change the model.
 
-
-2. Can I apply MambaVision for downstream tasks like detection, segmentation ? 
-
-Yes ! we are working to have it released very soon. But employing MambaVision backbones for these tasks is very similar to other models in `mmseg` or `mmdet` packages. In addition, MambaVision [Hugging Face](https://huggingface.co/collections/nvidia/mambavision-66943871a6b36c9e78b327d3) models provide feature extraction capablity which can be used for downstream tasks. Please see the above example. 
-
-
-3. I am interested in re-implementing MambaVision in my own repository. Can we use the pretrained weights ? 
+2. I am interested in re-implementing MambaVision in my own repository. Can we use the pretrained weights ? 
 
 Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Please submit an issue in this repo and we will add your repository to the README of our codebase and properly acknowledge your efforts. 
 
+3. Can I apply MambaVision for downstream tasks like detection, segmentation ? 
+
+Yes ! we have released the code for downstream tasks.  
 
 ## Citation
 
