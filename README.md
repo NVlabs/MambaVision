@@ -385,7 +385,6 @@ python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batc
     <th>mask mAP</th>
     <th>#Params(M)</th>
     <th>FLOPs(G)</th>
-    <th>HF</th>
     <th>Config</th>
     <th>Log</th>
     <th>Model Ckpt</th>
@@ -399,7 +398,6 @@ python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batc
     <td>44.3</td>
     <td>86</td>
     <td>740</td>
-    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco">HF</a></td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/configs/mamba_vision/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.py">config</a></td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/work_dirs/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/20250607_142007/20250607_142007.log">log</a></td>
     <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
@@ -413,7 +411,6 @@ python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batc
     <td>45.2</td>
     <td>108</td>
     <td>828</td>
-    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_small_3x_coco">HF</a></td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/configs/mamba_vision/cascade_mask_rcnn_mamba_vision_small_3x_coco.py">config</a></td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/work_dirs/cascade_mask_rcnn_mamba_vision_small_3x_coco/20250607_144612/20250607_144612.log">log</a></td>
     <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
@@ -427,11 +424,11 @@ python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batc
     <td>45.7</td>
     <td>145</td>
     <td>964</td>
-    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_base_3x_coco">HF</a></td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/configs/mamba_vision/cascade_mask_rcnn_mamba_vision_base_3x_coco.py">config</a></td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/work_dirs/cascade_mask_rcnn_mamba_vision_base_3x_coco/20250607_145939/20250607_145939.log">log</a></td>
     <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_base_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_base_3x_coco.pth">model</a></td>
 </tr>
+
 </table>
 
 ## Installation
@@ -468,7 +465,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
 
 3. Can I apply MambaVision for downstream tasks like detection, segmentation ? 
 
-Yes ! we have released the code for downstream tasks.  
+Yes ! we have released the [model](https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/mamba_vision.py) that supports downstream tasks along code and pretrained models for [object detection](https://github.com/NVlabs/MambaVision/tree/main/object_detection) and semantic segmentation.
 
 ## Citation
 
