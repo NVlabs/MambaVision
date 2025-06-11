@@ -70,7 +70,7 @@
 
 ## Installation
 
-Our object detection code is built upon on top of the popular [MMSegmentation](https://github.com/open-mmlab/mmsegmentation) framework. 
+Our semantic segmentation code is built upon on top of the popular [MMSegmentation](https://github.com/open-mmlab/mmsegmentation) framework. 
 
 ### 1. Verify MambaVision Backbone Support
 
@@ -240,10 +240,10 @@ This work is made available under the NVIDIA Source Code License-NC. Click [here
 
 The pre-trained models are shared under [CC-BY-NC-SA-4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
-For license information regarding the MMDetection repository, please refer to its [repository](https://github.com/open-mmlab/mmsegmentation).
+For license information regarding the MMSegmentation repository, please refer to its [repository](https://github.com/open-mmlab/mmsegmentation).
 
 For ADE20OK dataset, please refer to its [terms of use](https://ade20k.csail.mit.edu/terms/).
 
 
 ## Acknowledgement
-The detection repository is built on top of the [MMSegmentation](https://github.com/open-mmlab/mmsegmentation) and inspired by [VMamba](https://github.com/MzeroMiko/VMamba/tree/main/segmentation). 
+The segmentation repository is built on top of the [MMSegmentation](https://github.com/open-mmlab/mmsegmentation) and inspired by [VMamba](https://github.com/MzeroMiko/VMamba/tree/main/segmentation). 
