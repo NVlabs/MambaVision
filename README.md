@@ -431,6 +431,74 @@ python validate_pip_model.py --model mamba_vision_T --data_dir=$DATA_PATH --batc
 
 </table>
 
+##  Segmentation Results + Models 
+
+<table>
+  <tr>
+    <th>Backbone</th>
+    <th>Method</th>
+    <th>Lr Schd</th>
+    <th>mIoU</th>
+    <th>#Params(M)</th>
+    <th>FLOPs(G)</th>
+    <th>Config</th>
+    <th>Log</th>
+    <th>Model Ckpt</th>
+  </tr>
+
+<tr>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-T-1K">MambaVision-T-1K</a></td>
+    <td>UPerNet</td>
+    <td>160K</td>
+    <td>46.0</td>
+    <td>55</td>
+    <td>945</td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/configs/mamba_vision/mamba_vision_160k_ade20k-512x512_tiny.py">config</a></td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/tools/logs/mamba_vision_160k_ade20k-512x512_tiny.log">log</a></td>
+    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
+</tr>
+
+
+<tr>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-S-1K">MambaVision-S-1K</a></td>
+    <td>UPerNet</td>
+    <td>160K</td>
+    <td>48.2</td>
+    <td>84</td>
+    <td>1135</td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/configs/mamba_vision/mamba_vision_160k_ade20k-512x512_small.py">config</a></td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/tools/logs/mamba_vision_160k_ade20k-512x512_small.log">log</a></td>
+    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
+</tr>
+
+<tr>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-B-1K">MambaVision-B-1K</a></td>
+    <td>UPerNet</td>
+    <td>160K</td>
+    <td>49.1</td>
+    <td>126</td>
+    <td>1342</td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/configs/mamba_vision/mamba_vision_160k_ade20k-512x512_base.py">config</a></td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/tools/logs/mamba_vision_160k_ade20k-512x512_base.log">log</a></td>
+    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
+</tr>
+
+
+<tr>
+    <td><a href="https://huggingface.co/nvidia/MambaVision-L3-512-21K">MambaVision-L3-512-21K</a></td>
+    <td>UPerNet</td>
+    <td>160K</td>
+    <td>53.2</td>
+    <td>780</td>
+    <td>3670</td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/configs/mamba_vision/mamba_vision_160k_ade20k-640x640_l3_21k.py">config</a></td>
+    <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/tools/logs/mamba_vision_160k_ade20k-640x640_l3_21k.log">log</a></td>
+    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
+</tr>
+
+
+</table>
+
 ## Installation
 
 We provide a [docker file](./Dockerfile). In addition, assuming that a recent [PyTorch](https://pytorch.org/get-started/locally/) package is installed, the dependencies can be installed by running:
