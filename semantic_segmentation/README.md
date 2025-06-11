@@ -24,7 +24,7 @@
     <td>945</td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/configs/mamba_vision/mamba_vision_160k_ade20k-512x512_tiny.py">config</a></td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/tools/logs/mamba_vision_160k_ade20k-512x512_tiny.log">log</a></td>
-    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
+    <td><a href="https://huggingface.co/nvidia/mamba_vision_160k_ade20k-512x512_tiny/resolve/main/mamba_vision_160k_ade20k-512x512_tiny.pth">model</a></td>
 </tr>
 
 
@@ -37,7 +37,7 @@
     <td>1135</td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/configs/mamba_vision/mamba_vision_160k_ade20k-512x512_small.py">config</a></td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/tools/logs/mamba_vision_160k_ade20k-512x512_small.log">log</a></td>
-    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
+    <td><a href="https://huggingface.co/nvidia/mamba_vision_160k_ade20k-512x512_small/resolve/main/mamba_vision_160k_ade20k-512x512_small.pth">model</a></td>
 </tr>
 
 <tr>
@@ -49,7 +49,7 @@
     <td>1342</td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/configs/mamba_vision/mamba_vision_160k_ade20k-512x512_base.py">config</a></td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/tools/logs/mamba_vision_160k_ade20k-512x512_base.log">log</a></td>
-    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
+    <td><a href="https://huggingface.co/nvidia/mamba_vision_160k_ade20k-512x512_base/resolve/main/mamba_vision_160k_ade20k-512x512_base.pth">model</a></td>
 </tr>
 
 
@@ -62,7 +62,7 @@
     <td>3670</td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/configs/mamba_vision/mamba_vision_160k_ade20k-640x640_l3_21k.py">config</a></td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/semantic_segmentation/tools/logs/mamba_vision_160k_ade20k-640x640_l3_21k.log">log</a></td>
-    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
+    <td><a href="https://huggingface.co/nvidia/mamba_vision_160k_ade20k-640x640_l3_21k/resolve/main/mamba_vision_160k_ade20k-640x640_l3_21k.pth">model</a></td>
 </tr>
 
 
