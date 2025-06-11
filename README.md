@@ -39,6 +39,9 @@ MambaVision has a hierarchical architecture that employs both self-attention and
 
 
 ## 💥 News 💥
+- **[06.10.2025]** The MambaVision [poster](https://github.com/NVlabs/MambaVision/blob/main/mambavision/assets/mamba_vision_poster_cvpr25.pdf) will be presented in CVPR 2025 in Nashville on Sunday, June 15, 2025, from 10:30 a.m. to 12:30 p.m. CDT in Exhibit Hall D, Poster #403.
+  
+- **[06.10.2025]** Semantic segmentation code and models released [here](https://github.com/NVlabs/MambaVision/tree/main/semantic_segmentation) !
 
 - **[06.07.2025]** Object detection code and models released [here](https://github.com/NVlabs/MambaVision/tree/main/object_detection) !
 
