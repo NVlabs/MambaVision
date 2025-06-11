@@ -533,7 +533,7 @@ Yes ! the pretrained weights are released under [CC-BY-NC-SA-4.0](https://creati
 
 3. Can I apply MambaVision for downstream tasks like detection, segmentation ? 
 
-Yes ! we have released the [model](https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/mamba_vision.py) that supports downstream tasks along code and pretrained models for [object detection](https://github.com/NVlabs/MambaVision/tree/main/object_detection) and semantic segmentation.
+Yes ! we have released the [model](https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/mamba_vision.py) that supports downstream tasks along code and pretrained models for [object detection](https://github.com/NVlabs/MambaVision/tree/main/object_detection) and [semantic segmentation](https://github.com/NVlabs/MambaVision/tree/main/semantic_segmentation).
 
 ## Citation
 
