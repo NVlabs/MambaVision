@@ -9,15 +9,14 @@
 # distribution of this software and related documentation without an express
 # license agreement from NVIDIA CORPORATION is strictly prohibited.
 
+import torch
+from models.mamba_vision import *
+import argparse
+import time
+import numpy as np
+from ptflops import get_model_complexity_info
+
 if __name__ == "__main__":
-    print("Testing model")
-    from ptflops import get_model_complexity_info
-    import torch
-    import argparse
-    import time
-    import numpy as np
-
-
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", help="model name",
                         default="mamba_vision_T",type=str)
@@ -44,6 +43,7 @@ if __name__ == "__main__":
 
     input_data = torch.randn((bs, 3, resolution, resolution), device='cuda').cuda()
 
+    # we recommend using channel_last
     if args.channel_last:
         input_data = input_data.to(memory_format=torch.channels_last)
         model = model.to(memory_format=torch.channels_last)
