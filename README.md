@@ -540,7 +540,7 @@ Yes ! we have released the [model](https://github.com/NVlabs/MambaVision/blob/ma
 
 4. How were the throughput and FLOPs calculated for each model ?
 
-Please see this [snippet](https://github.com/NVlabs/MambaVision/blob/main/mambavision/throughput_measure.py) for throughput and FLOPs measurement. Result may vary depending on the hardware. 
+Please see this [snippet](https://github.com/NVlabs/MambaVision/blob/main/mambavision/throughput_measure.py) for throughput and FLOPs measurement. Results may vary depending on the hardware. 
 
 ## Citation
 
