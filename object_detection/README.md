@@ -111,7 +111,7 @@ Once you’ve chosen a config (e.g., `cascade_mask_rcnn_mamba_vision_tiny_3x_coc
 srun --gres=gpu:8 python tools/train.py configs/mamba_vision/<CONFIG_FILE>.py
 ```
 
-You can also our slurm [train script](https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/cascade_mask_rcnn_mamba_vision_base_3x.sh).
+You can also use our slurm [train script](https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/cascade_mask_rcnn_mamba_vision_base_3x.sh).
 
 
 If you’d rather run on a single GPU—for quick tests or debugging—use:
