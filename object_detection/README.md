@@ -39,7 +39,7 @@
     <td>828</td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/configs/mamba_vision/cascade_mask_rcnn_mamba_vision_small_3x_coco.py">config</a></td>
     <td><a href="https://github.com/NVlabs/MambaVision/blob/main/object_detection/tools/work_dirs/cascade_mask_rcnn_mamba_vision_small_3x_coco/20250607_144612/20250607_144612.log">log</a></td>
-    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_tiny_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_tiny_3x_coco.pth">model</a></td>
+    <td><a href="https://huggingface.co/nvidia/cascade_mask_rcnn_mamba_vision_small_3x_coco/resolve/main/cascade_mask_rcnn_mamba_vision_small_3x_coco.pth">model</a></td>
 </tr>
 
 <tr>
