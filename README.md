@@ -566,7 +566,7 @@ If you find MambaVision to be useful for your work, please consider citing our p
 
 ## Licenses
 
-Copyright © 2025, NVIDIA Corporation. All rights reserved.
+Copyright © 2026, NVIDIA Corporation. All rights reserved.
 
 This work is made available under the NVIDIA Source Code License-NC. Click [here](LICENSE) to view a copy of this license.
 
