@@ -330,7 +330,7 @@ class MambaVisionMixer(nn.Module):
         dt_init="random",
         dt_scale=1.0,
         dt_init_floor=1e-4,
-        conv_bias=True,
+        conv_bias=False,
         bias=False,
         use_fast_path=True, 
         layer_idx=None,
@@ -381,7 +381,7 @@ class MambaVisionMixer(nn.Module):
         self.conv1d_x = nn.Conv1d(
             in_channels=self.d_inner//2,
             out_channels=self.d_inner//2,
-            bias=conv_bias//2,
+            bias=conv_bias,
             kernel_size=d_conv,
             groups=self.d_inner//2,
             **factory_kwargs,
@@ -389,7 +389,7 @@ class MambaVisionMixer(nn.Module):
         self.conv1d_z = nn.Conv1d(
             in_channels=self.d_inner//2,
             out_channels=self.d_inner//2,
-            bias=conv_bias//2,
+            bias=conv_bias,
             kernel_size=d_conv,
             groups=self.d_inner//2,
             **factory_kwargs,
